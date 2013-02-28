@@ -1,0 +1,71 @@
+== Full Stack
+
+    $ bundle rake db:create
+    $ bundle rake db:migrate
+    $ bundle rake db:seed
+
+    # Gemfile
+    gem 'xapit', :git => "git://github.com/ryanb/xapit.git"
+
+    $ bundle install
+
+    # Product.rb
+    xapit do
+      text :name, :description, :brand
+      field :category_id
+      sortable :id, :created_at
+    end
+
+    # config/thin_xapit.yml
+    # encoding: utf-8
+    ---
+    rackup: xapit.ru
+    chdir: ./
+    environment: staging
+    address: 0.0.0.0
+    port: 9292
+    timeout: 30
+    log: log/thin.log
+    pid: tmp/pids/thin.pid
+    max_conns: 1024
+    max_persistent_conns: 100
+    require: []
+    wait: 30
+    daemonize: true
+    debug: true
+
+    # config/xapit.yml
+    development:
+      database_path: "./db/xapit"
+      server: "http://localhost:9292"
+
+    test:
+      enabled: false
+      spelling: false
+
+    staging:
+      database_path: "./db/xapit"
+      server: "http://localhost:9292"
+
+    production:
+      database_path: "./db/xapit"
+      server: "http://localhost:9292"
+
+    rack_serv:
+      database_path: "./db/xapit"
+
+    # xapit.ru
+    require "rubygems"
+    require "xapit"
+
+    Xapit.load_config(File.expand_path('../config/xapit.yml', __FILE__), "rack_serv")
+
+    run Xapit::Server::App.new
+
+    # Then launch server and indexing:
+    $ bundle exec thin -C config/thin_xapit.yml -e production start
+    $ bundle exec rake xapit:index
+
+
+
+

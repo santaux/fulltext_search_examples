@@ -1,0 +1,13 @@
+!!!
+%html
+%head
+%title SphinxMarket
+= stylesheet_link_tag    "application", :media => "all"
+= javascript_include_tag "application"
+= csrf_meta_tags
+%body
+.row
+  .span3
+  .span6
+    = yield
+  .span2

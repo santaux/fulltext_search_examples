@@ -1,0 +1,18 @@
+development:
+  database_path: "./db/xapit"
+  server: "http://localhost:9292"
+
+test:
+  enabled: false
+  spelling: false
+
+staging:
+  database_path: "./db/xapit"
+  server: "http://localhost:9292"
+
+production:
+  database_path: "./db/xapit"
+  server: "http://localhost:9292"
+
+rack_serv:
+  database_path: "./db/xapit"
