@@ -1,0 +1,18 @@
+%h1 Sphinx Fulltext Search
+%br
+
+= form_tag products_path, :method => :get do |f|
+  .input-append
+    = text_field_tag :query, params[:query], :class => 'span4'
+    = submit_tag "Search", :class => 'btn span2'
+
+- @products.each do |product|
+  .well
+    %h3= product.name
+    = product.description
+    %br
+    %br
+    %i= product.brand
+    %br
+    %br
+    %strong= product.category.name

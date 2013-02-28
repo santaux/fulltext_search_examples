@@ -1,0 +1,28 @@
+== Full Stack
+
+    $ bundle rake db:create
+    $ bundle rake db:migrate
+    $ bundle rake db:seed
+
+    # Gemfile
+    gem 'thinking-sphinx', '2.0.10'
+
+    $ bundle install
+
+    # Product.rb
+    define_index do
+      indexes created_at, :sortable => true
+      indexes description
+      indexes name
+      indexes brand
+      indexes category(:name), :as => :category, :sortable => true
+
+      has updated_at
+    end
+
+    $ bundle exec rake ts:configure
+    $ bundle exec rake ts:index
+    $ bundle exec rake ts:start
+
+
+
