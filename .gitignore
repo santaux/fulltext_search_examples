@@ -14,5 +14,5 @@
 /log/*.log
 /tmp
 .idea/
-db/sphinx
-db/xapit
+sphinx_market/db/sphinx
+sphinx_market/db/xapit
