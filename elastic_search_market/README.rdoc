@@ -1,0 +1,25 @@
+== Full Stack
+
+    $ bundle rake db:create
+    $ bundle rake db:migrate
+    $ bundle rake db:seed
+
+    # Gemfile
+    gem 'tire'
+    gem 'will_paginate'
+
+    $ bundle install
+
+    # Product.rb
+    include Tire::Model::Search
+    include Tire::Model::Callbacks
+
+    # Then launch elasticsearch:
+    $ elasticsearch
+
+    # And let's index the data:
+    $ bundle rake environment tire:import CLASS='Product' FORCE=true
+
+
+
+

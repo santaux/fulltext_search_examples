@@ -14,7 +14,4 @@
 /log/*.log
 /tmp
 .idea/
-sphinx_market/db/sphinx
-sphinx_market/db/xapit
-solr_market/.DS_Store
-solr_market/log/sunspot-solr-development.log.lck
+/solr
