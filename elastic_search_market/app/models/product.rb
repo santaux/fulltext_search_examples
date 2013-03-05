@@ -5,4 +5,10 @@ class Product < ActiveRecord::Base
   belongs_to :category
 
   attr_accessible :name, :description, :brand, :category
+
+  def self.search(params)
+    tire.search(load: true) do
+      query { string params[:query] }
+    end
+  end
 end
