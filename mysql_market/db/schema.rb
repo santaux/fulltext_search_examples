@@ -28,4 +28,8 @@ ActiveRecord::Schema.define(:version => 20130227053822) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "products", ["brand"], :name => "brand"
+  add_index "products", ["description"], :name => "description"
+  add_index "products", ["name"], :name => "name"
+
 end
