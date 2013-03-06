@@ -1,0 +1,30 @@
+== Full Stack
+
+    $ bundle rake db:create
+    $ bundle rake db:migrate
+    $ bundle rake db:seed
+
+    # Gemfile
+    gem 'sunspot_rails'
+    gem 'sunspot_solr'
+
+    $ bundle install
+
+    # Product.rb
+    searchable do
+      text :name, :description, :brand
+      integer :category_id
+      time :created_at
+      time :updated_at
+    end
+
+    # Then generate config and launch solr:
+    $ rails generate sunspot_rails:install
+    $ bundle exec rake sunspot:solr:start
+
+    # And let's index the data:
+    bundle exec rake sunspot:reindex
+
+
+
+
