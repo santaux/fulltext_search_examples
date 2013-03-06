@@ -4,11 +4,15 @@
     $ bundle rake db:migrate
     $ bundle rake db:seed
 
-    # Gemfile
-    gem 'sunspot_rails'
-    gem 'sunspot_solr'
-
     $ bundle install
+
+    # Change MySQL table engine into migration:
+    execute("ALTER TABLE products ENGINE=MYISAM;")
+
+    # Add indexes manually:
+    CREATE INDEX name_idx ON products USING gin(to_tsvector('english', name));
+    CREATE INDEX brand_idx ON products USING gin(to_tsvector('english', brand));
+    CREATE INDEX description_idx ON products USING gin(to_tsvector('english', description));
 
     # Product.rb
     def self.search(query)
