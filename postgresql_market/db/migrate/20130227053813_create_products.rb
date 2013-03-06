@@ -7,5 +7,12 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :category_id
       t.timestamps
     end
+
+    # Add indexes to postgres manually:
+    execute %{
+      CREATE INDEX name_idx ON products USING gin(to_tsvector('english', name));
+      CREATE INDEX brand_idx ON products USING gin(to_tsvector('english', brand));
+      CREATE INDEX description_idx ON products USING gin(to_tsvector('english', description));
+    }
   end
 end
